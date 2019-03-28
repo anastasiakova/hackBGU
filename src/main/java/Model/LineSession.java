@@ -1,12 +1,16 @@
 package Model;
-import java.util.List;
 
-public class User implements ISQLable {
-    String id;
-    String Email;
-    List<String> favoriteCategories;
-    List<CalendarSession> imTheTeacher;
-    List<CalendarSession> imTheStudent;
+import java.util.Date;
+
+public class LineSession implements ISQLable {
+    public String category;
+    public String subject;
+    public Date beginTime;
+    public Date endTime;
+    public int price;
+    public String name;
+    public String email;
+    public String description;
 
     @Override
     public String getPrimaryKey() {
