@@ -28,12 +28,6 @@ public class SQLModel {
             System.out.println(tbl.name());
             createTable(tbl);
         }
-//
-//        createUsersTable();
-//        createRequestsTable();
-//        createVactionsTable();
-
-
     }
 
     private void createTable(Tables tbl) {
@@ -96,18 +90,104 @@ public class SQLModel {
 //        }
 //    }
 //
-//    public void insertRecordToTable(String table, ISQLable isqLable){
-//        String sql = "INSERT INTO " + isqLable.getTableFields();
+    public void insertRecordToTable(ISQLable isqLable){
+        String insert = "INSERT INTO " + getTableFields(isqLable.getTableName());
+
+        try (Connection conn = DriverManager.getConnection(_path);
+             PreparedStatement pstmt = conn.prepareStatement(insert)) {
+            isqLable.insertRecordToTable(pstmt);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public String getTableFields(String tbl){
+        boolean isOne = TablesFields.enumDict.get(tbl).size() == 1;
+        String fields = isOne ? tbl + "(" + TablesFields.enumDict.get(tbl).get(0) + ")" :
+                tbl + "(" + TablesFields.enumDict.get(tbl).get(0) + ",";
+        String values = isOne ? "VALUES(?)" : "VALUES(?,";
+
+       for(int field = 1 ; field < TablesFields.enumDict.get(tbl).size() - 1 ; field++){
+           fields += TablesFields.enumDict.get(tbl).get(field) + ",";
+           values += "?,";
+       }
+        fields += isOne ? "" :
+                TablesFields.enumDict.get(tbl).get(TablesFields.enumDict.get(tbl).size()-1) + ")";
+       values += isOne ? "": "?)";
+       return fields + values;
+    }
+
+    public void deleteRecordFromTable(ISQLable isqLable){
+        String delete = "DELETE FROM " + isqLable.getTableName() + "\n";
+        delete += "WHERE " + TablesFields.enumDict.get(isqLable.getTableName()).get(0) + " = '" + isqLable.getPrimaryKey() + "';\n";
+
+        try (Connection conn = DriverManager.getConnection(_path);
+             Statement stmt  = conn.createStatement()){
+            stmt.executeUpdate(delete);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void updateRecord(ISQLable isqLable){
+        String sql = "UPDATE " + isqLable.getTableName() + "\n";
+        sql+= "SET " + isqLable.getFieldsSQLWithValues();
+        sql += "WHERE " + TablesFields.enumDict.get(isqLable.getTableName()).get(0) + "='"  + isqLable.getPrimaryKey() + "';\n";
+
+        try (Connection conn = DriverManager.getConnection(_path);
+             Statement stmt  = conn.createStatement()){
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //selects
+
+    public String getUser(String usareName, String psw){
+        String getUser = "SELECT * FROM " + Tables.TBL_USERS.name() + "\n" +
+                "WHERE userId = " + usareName + "AND pwd" + psw;
+        String res = "";
+        try (Connection conn = DriverManager.getConnection(_path);
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(getUser)){
+
+            // loop through the result set
+            while (rs.next()) {
+                for (int i = 1 ; i <= TablesFields.enumDict.get(Tables.TBL_USERS.name()).size(); i++){
+                    res += rs.getString(i) + ", ";
+                }
+                res += '\n';
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return res;
+    }
+
+//    public void deleteRecordFromTable(String tblName, List<String> tblFields , String[] fieldsData ){
+//        String sql = "DELETE FROM " + tblName + "\n WHERE ";
 //
+//        boolean notFirst = false;
+//        for (int i = 0; i < tblFields.size(); i++) {
+//            if (fieldsData[i] != "" && fieldsData[i] != null) {
+//                if (notFirst) {
+//                    sql += " AND ";
+//                }
+//                notFirst = true;
+//                sql += tblFields.get(i) + "='" + fieldsData[i] + "'";
+//            }
+//        }
 //        try (Connection conn = DriverManager.getConnection(_path);
-//             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//            isqLable.insertRecordToTable(pstmt);
-//            pstmt.executeUpdate();
+//             Statement stmt  = conn.createStatement()){
+//            stmt.executeUpdate(sql);
 //        } catch (SQLException e) {
 //            System.out.println(e.getMessage());
 //        }
 //    }
 //
+
 //    public void insertRecordToTable(String fieldsForConection, String[] fieldsData){
 //        String sql = "INSERT INTO " + fieldsForConection;
 //
@@ -186,51 +266,4 @@ public class SQLModel {
 //        return res;
 //    }
 //
-//    public void deleteRecordFromTable(ISQLable isqLable){
-//        String sql = "DELETE FROM " + isqLable.getTableName() + "\n";
-//        sql += "WHERE " + isqLable.getPrimaryKeyName() + " = '" + isqLable.getPrimaryKey() /*getPrimaryKey*/ + "';\n";
-//
-//        try (Connection conn = DriverManager.getConnection(_path);
-//             Statement stmt  = conn.createStatement()){
-//            stmt.executeUpdate(sql);
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//    }
-//
-//    public void deleteRecordFromTable(String tblName, List<String> tblFields , String[] fieldsData ){
-//        String sql = "DELETE FROM " + tblName + "\n WHERE ";
-//
-//        boolean notFirst = false;
-//        for (int i = 0; i < tblFields.size(); i++) {
-//            if (fieldsData[i] != "" && fieldsData[i] != null) {
-//                if (notFirst) {
-//                    sql += " AND ";
-//                }
-//                notFirst = true;
-//                sql += tblFields.get(i) + "='" + fieldsData[i] + "'";
-//            }
-//        }
-//        try (Connection conn = DriverManager.getConnection(_path);
-//             Statement stmt  = conn.createStatement()){
-//            stmt.executeUpdate(sql);
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//    }
-//
-//    public void updateRecord(ISQLable isqLable){
-//        String sql = "UPDATE " + isqLable.getTableName() + "\n";
-//        sql+= "SET " + isqLable.getFieldsSQLWithValues();
-//        sql += "WHERE " + isqLable.getPrimaryKeyName() + "='"  + isqLable.getPrimaryKey() /*getPrimaryKey*/ + "';\n";
-//
-//        try (Connection conn = DriverManager.getConnection(_path);
-//             Statement stmt  = conn.createStatement()){
-//            stmt.executeUpdate(sql);
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        }
-//    }
-//
-
 }
