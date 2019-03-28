@@ -62,13 +62,22 @@ public class LineSession implements Model.ISQLable {
         }
 
         this.price = Integer.parseInt(lineSession[5]);
-        this.name = lineSession[6];
-        this.email = lineSession[7];
         this.userID = lineSession[8];
         this.description = lineSession[9];
 
         this.limitedNumber = Integer.parseInt(lineSession[10]);
         this.registered = Integer.parseInt(lineSession[11]);
+
+        this.name = getName(userID);
+        this.email = getEmail(userID);
+    }
+
+    private String getEmail(String userID) {
+        return null;//TODO complete
+    }
+
+    private String getName(String userID) {
+        return null; //TODO complete
     }
 
     @Override
