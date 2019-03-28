@@ -1,0 +1,27 @@
+.toggle-button {
+    -fx-background-size: 200px;
+    -fx-padding: 80px;
+
+    }
+
+/*.toggle-button:selected {*/
+    /*-fx-graphic: url('http://www.hrus.co.il/wp-content/uploads/2011/12/%D7%90%D7%95%D7%A0%D7%99%D7%91%D7%A8%D7%A1%D7%99%D7%98%D7%AA-%D7%91%D7%9F-%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%9F1.jpg');*/
+/*}*/
+#Physics{
+    -fx-background-image: url('https://previews.123rf.com/images/gow27/gow271601/gow27160100108/50745250-physics-science-theory-law-and-mathematical-formula-equation-doodle-handwriting-and-model-icon-in-wh.jpg');
+}
+
+#Math{
+    -fx-background-image: url('https://image.shutterstock.com/image-vector/math-theory-mathematical-formula-equation-450w-360387917.jpg');
+}
+#Computers{
+    -fx-background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3nz_D4LRP4VIvii7HxexV0D0OXDTKtAf9GDGEYt6mktP21sJO');
+}
+#Biology{
+    -fx-background-image: url('https://media.istockphoto.com/vectors/biology-background-vector-id893472990');
+}
+#Entropology{
+      -fx-background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz3gfpR6TgMmpDSpP-uxatj4763g4w9gr_9Da5bhJQZW2VWNq7');
+  }#Entropology{
+      -fx-background-image: url('https://www.brunel.ac.uk/communication-and-media-studies/images/Society-Logo250x225.png');
+  }
