@@ -19,7 +19,7 @@ public class loginController {
     public void logINButtonAction(ActionEvent event) throws IOException {
         //validate user name & password
         boolean loginSuccessful = false;
-        if (userText != "" && passText != "") {
+        if (userText.getText() != "" && passText.getText() != "") {
             //controller search
             //this.logedInController = new LogedInController();
 //            loginSuccessful = searchController.isLoginValid(userText.getText(), passText.getText());
