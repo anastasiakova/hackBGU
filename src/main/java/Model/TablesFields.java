@@ -11,7 +11,7 @@ public class TablesFields {
         enumList = Arrays.asList("userId", "pwd", "email", "privateName",
                 "lastName");
         enumDict.put(Tables.TBL_USERS, enumList);
-        enumList = Arrays.asList("sessionId","userId" ,"date", "startTime", "endTime",
+        enumList = Arrays.asList("sessionId","userId", "startTime", "endTime",
                 "price", "description", "limitedNumber", "registered");
         enumDict.put(Tables.TBL_SESSION, enumList);
         enumList = Arrays.asList("subjectId", "subjectName", "subjectCategoryName");
