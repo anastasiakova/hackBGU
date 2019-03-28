@@ -18,7 +18,7 @@ public class TablesFields {
         enumDict.put(Tables.TBL_SUBJECTS, enumList);
         enumList = Arrays.asList("categoryNameId");
         enumDict.put(Tables.TBL_CATEGORIES, enumList);
-        enumList = Arrays.asList("categoryName", "sessionName");
+        enumList = Arrays.asList("subjectSessionID","categoryName", "sessionName");
         enumDict.put(Tables.TBL_SUBJECTSESSION, enumList);
         enumList = Arrays.asList("userFavoritesId", "userFavoritesUserId", "userFavoritesCategoryName");
         enumDict.put(Tables.TBL_USERFAVORITES, enumList);

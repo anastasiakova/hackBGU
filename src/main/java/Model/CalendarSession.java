@@ -1,8 +1,10 @@
 package Model;
 
 import java.util.Date;
+import java.util.List;
 
 public class CalendarSession {
+    private String sessionID;
     public List<CompactUser> participants;
     public Date beginTime;
     public Date endTime;
