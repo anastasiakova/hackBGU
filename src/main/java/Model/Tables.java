@@ -1,0 +1,11 @@
+package Model;
+
+public enum Tables {
+    TBL_USERS,
+    TBL_CATEGORIES,
+    TBL_SUBJECTS,
+    TBL_SESSION,
+    TBL_USERFAVORITES,
+    TBL_SUBJECTSESSION,
+    TBL_REGISTERDSSESION
+}
