@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/hackBGU.iml" filepath="$PROJECT_DIR$/.idea/hackBGU.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hackBGU.main.iml" filepath="$PROJECT_DIR$/.idea/modules/hackBGU.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hackBGU.test.iml" filepath="$PROJECT_DIR$/.idea/modules/hackBGU.test.iml" />
+    </modules>
+  </component>
+</project>
