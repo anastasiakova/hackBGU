@@ -1,4 +1,5 @@
 package Model;
+import java.sql.PreparedStatement;
 import java.util.List;
 
 public class User implements ISQLable {
@@ -14,12 +15,12 @@ public class User implements ISQLable {
     }
 
     @Override
-    public String getPrimaryKeyName() {
-        return null;
+    public void insertRecordToTable(PreparedStatement pstmt) {
+
     }
 
     @Override
-    public String getTableFields() {
+    public String getFieldsSQLWithValues() {
         return null;
     }
 

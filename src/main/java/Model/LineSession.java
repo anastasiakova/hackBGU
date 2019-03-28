@@ -1,8 +1,10 @@
 package Model;
 
+import java.sql.PreparedStatement;
 import java.util.Date;
 
 public class LineSession implements ISQLable {
+    public String id;
     public String category;
     public String subject;
     public Date beginTime;
@@ -18,12 +20,12 @@ public class LineSession implements ISQLable {
     }
 
     @Override
-    public String getPrimaryKeyName() {
-        return null;
+    public void insertRecordToTable(PreparedStatement pstmt) {
+
     }
 
     @Override
-    public String getTableFields() {
+    public String getFieldsSQLWithValues() {
         return null;
     }
 
