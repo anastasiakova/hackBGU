@@ -12,7 +12,7 @@ public class orenMain extends Application {
     public void start(Stage primaryStage) throws Exception {
 
             FXMLLoader fxmlControl = new FXMLLoader();
-            Parent root = fxmlControl.load(getClass().getResource(("/Reco.fxml")).openStream());
+            Parent root = fxmlControl.load(getClass().getResource(("/userPre.fxml")).openStream());
             primaryStage.setTitle("VACATION 4 U ");
             openWindow view = fxmlControl.getController();
             primaryStage.setScene(new Scene(root, 1300, 950));
